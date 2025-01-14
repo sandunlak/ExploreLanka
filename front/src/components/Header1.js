@@ -20,7 +20,7 @@ const Header = () => {
             top: 0, 
             zIndex: 1000 
         }}>
-            <div style={{ padding: '10px 20px', fontSize: '40px', fontWeight: 'bold', color: '#007bff' }}>Travely</div>
+            <div style={{ padding: '10px 20px', fontSize: '40px', fontWeight: 'bold', color: '#007bff' }}>ExploreLanka</div>
             <div style={{ display: 'flex', gap: '20px' }}>
                 <a href="#" style={{ textDecoration: 'none', color: '#000', fontSize: '30px' }}>Home</a>
                 <div style={{ position: 'relative', display: 'inline-block' }} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>

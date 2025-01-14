@@ -1,6 +1,26 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 
 const Banner = () => {
+  // State to keep track of the current image index
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // Array of images for the slideshow
+  const images = [
+    "https://i.postimg.cc/prbK5Jc9/pexels-roman-odintsov-4553365.jpg",
+    "https://i.postimg.cc/Fsvj9GJ8/pexels-freestockpro-319976.jpg",
+    "https://i.postimg.cc/J4QjtJNn/pexels-freestockpro-330260.jpg",
+    "https://i.postimg.cc/Gp4DM5Z8/pexels-elina-sazonova-4403903.jpg",
+    "https://i.postimg.cc/PJj85rNY/pexels-freestockpro-320006.jpg"
+  ];
+
+  // Effect to change the image every 5 seconds
+  useEffect(() => {
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length);
+    }, 5000); // Change image every 5 seconds
+    return () => clearInterval(interval); // Cleanup interval on unmount
+  }, []);
+
   return (
     <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', padding: '60px 40px', backgroundColor: '#fff' }}>
       <div style={{ maxWidth: '50%' }}>
@@ -9,7 +29,7 @@ const Banner = () => {
         <button style={{ backgroundColor: '#000', fontSize: '1.5em', color: '#fff', padding: '15px 50px', border: 'none', cursor: 'pointer', borderRadius: '30px' }}>Get started</button>
       </div>
       <div>
-        <img src="https://i.postimg.cc/W3Z3D9bS/j-a-neshan-paul-Qm8q-VUj-Lqs-unsplash.jpg" alt="Explore Sri Lanka" style={{ maxWidth: '70%', borderRadius: '30px' }} />
+        <img src={images[currentImageIndex]} alt="Explore Sri Lanka" style={{ maxWidth: '70%', borderRadius: '30px', transition: 'all 1s ease-in-out' }} />
       </div>
     </div>
   );
@@ -19,9 +39,7 @@ const WhyChooseUs = () => {
   return (
     <div style={{ display: 'flex', padding: '60px 40px', backgroundColor: '#fff' }}>
       <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginRight: '40px' }}>
-        <div style={{ display: 'flex', gap: '20px', marginBottom: '20px' }}>
-          
-        </div>
+        <div style={{ display: 'flex', gap: '20px', marginBottom: '20px' }}></div>
         <img src="https://i.postimg.cc/KzfW5bzY/sarmat-batagov-cu-Zbr-Yoimv8-unsplash.jpg" alt="Palm Trees" style={{ width: '500px', borderRadius: '20px' }} />
       </div>
       <div>
@@ -59,8 +77,7 @@ const Services = () => {
       <h2 style={{ color: '#007bff', fontSize: '3em', textAlign: 'center' }}>Our Services</h2>
       <p style={{ fontSize: '1.5em', textAlign: 'center', marginBottom: '40px' }}>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat reprehenderit autem ea ab repellat eum, quasi modi.</p>
       <div style={{ display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap', gap: '20px' }}>
-        {[
-          {src: "hotel-icon.png", alt: "Hotel Reservation", text: "Hotel Reservation"},
+        {[{src: "hotel-icon.png", alt: "Hotel Reservation", text: "Hotel Reservation"},
           {src: "tour-package-icon.png", alt: "Tour Package Reservation", text: "Tour Package Reservation"},
           {src: "vehicle-icon.png", alt: "Vehicle Reservation", text: "Vehicle Reservation"},
           {src: "train-icon.png", alt: "Train Reservation", text: "Train Reservation"},
@@ -86,7 +103,7 @@ const NewSection = () => {
   return (
     <div style={{ display: 'flex', padding: '60px 40px', backgroundColor: '#fff' }}>
       <div style={{ flex: 1 }}>
-        <h2 style={{ color: '#007bff', fontSize: '3em' }}>Trvel with us</h2>
+        <h2 style={{ color: '#007bff', fontSize: '3em' }}>Travel with us</h2>
         <h1 style={{ fontSize: '2em', marginBottom: '20px' }}>TAKE ONLY MEMORIES, LEAVE ONLY FOOTPRINTS</h1>
         <p style={{ fontSize: '1.5em', marginBottom: '20px' }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse nulla enim aperiam culpa cupiditate quas animi ducimus blanditiis! Dolorum, perspiciatis.</p>
         <p style={{ fontSize: '1.5em' }}>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Esse nulla enim aperiam culpa cupiditate quas animi ducimus blanditiis! Dolorum, perspiciatis.</p>
