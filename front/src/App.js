@@ -1,21 +1,26 @@
 import './App.css';
-import Header1 from  './components/Header1';
-import Middle from './components/Middle'
-import Footer from './components/Footer'
-import { BrowserRouter as Router, Route, Switch, Routes } from 'react-router-dom';
+import Header1 from './components/Header1';
+import Middle from './components/Middle';
+import Location from './components/location';
+import Footer from './components/Footer';
+import Jaffna from './components/Jaffna'; // Ensure this is default export
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 
 function App() {
   return (
     <Router>
       <div className="App">
         <Header1 />
-        <Middle/>
+        <Middle />
+        <Location />
         <main>
           <Routes>
-            {/* Add your Route components here */}
+            
+            <Route path="/Jaffna" element={<Jaffna />} />
+            
           </Routes>
         </main>
-        <Footer/>
+        <Footer />
       </div>
     </Router>
   );
