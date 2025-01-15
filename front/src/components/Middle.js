@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 
-const Banner = () => {
+const Banner = ({ scrollToServices }) => {
   // State to keep track of the current image index
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
@@ -26,7 +26,12 @@ const Banner = () => {
       <div style={{ maxWidth: '50%' }}>
         <h1 style={{ fontSize: '5em', marginBottom: '20px' }}>Explore the Wonders in <span style={{ color: '#007bff' }}>Sri Lanka</span></h1>
         <p style={{ fontSize: '2em', marginBottom: '20px' }}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
-        <button style={{ backgroundColor: '#000', fontSize: '1.5em', color: '#fff', padding: '15px 50px', border: 'none', cursor: 'pointer', borderRadius: '30px' }}>Get started</button>
+        <button 
+          onClick={scrollToServices} 
+          style={{ backgroundColor: '#000', fontSize: '1.5em', color: '#fff', padding: '15px 50px', border: 'none', cursor: 'pointer', borderRadius: '30px' }}
+        >
+          Get started
+        </button>
       </div>
       <div>
         <img src={images[currentImageIndex]} alt="Explore Sri Lanka" style={{ maxWidth: '70%', borderRadius: '30px', transition: 'all 1s ease-in-out' }} />
@@ -37,7 +42,7 @@ const Banner = () => {
 
 const WhyChooseUs = () => {
   return (
-    <div style={{ display: 'flex', padding: '60px 40px', backgroundColor: '#fff' }}>
+    <div style={{ display: 'flex', padding: '60px 40px', backgroundColor: '#fff', backgroundImage: 'url(https://example.com/background.jpg)', backgroundSize: 'cover', backgroundPosition: 'center' }}>
       <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', marginRight: '40px' }}>
         <div style={{ display: 'flex', gap: '20px', marginBottom: '20px' }}></div>
         <img src="https://i.postimg.cc/KzfW5bzY/sarmat-batagov-cu-Zbr-Yoimv8-unsplash.jpg" alt="Palm Trees" style={{ width: '500px', borderRadius: '20px' }} />
@@ -52,17 +57,18 @@ const WhyChooseUs = () => {
   );
 };
 
-const Services = () => {
+const Services = React.forwardRef((props, ref) => {
   const serviceStyle = {
-    display: 'flex', 
-    flexDirection: 'column', 
-    alignItems: 'center', 
-    padding: '20px', 
-    border: '1px solid #ddd', 
-    borderRadius: '10px', 
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+    padding: '20px',
+    border: '1px solid #ddd',
+    borderRadius: '10px',
     width: '200px',
     transition: 'all 0.3s ease-in-out',
-    boxShadow: '0 4px 8px rgba(0,0,0,0.1)',
+    boxShadow: '0 4px 8px rgba(235, 223, 223, 0.1)',
+    backgroundColor: '#F5F5F5',
   };
 
   const serviceHoverStyle = {
@@ -73,31 +79,64 @@ const Services = () => {
   const [hover, setHover] = React.useState(-1);
 
   return (
-    <div style={{ padding: '60px 40px', backgroundColor: '#fff' }}>
+    <div ref={ref} style={{ position: 'relative', padding: '60px 40px' }}>
+      <div
+        style={{
+          position: 'absolute',
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          backgroundImage: 'url(https://i.postimg.cc/Y2mCcgwZ/pexels-akos-helgert-82252426-9013701.jpg)',
+          backgroundSize: 'cover',
+          backgroundPosition: 'center',
+          filter: 'blur(5px)',
+          zIndex: -1,
+        }}
+      ></div>
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: "150px",
+          background: "linear-gradient(to bottom, white , transparent)",
+          zIndex: 1,
+        }}
+      ></div>
+      <div
+  style={{
+    position: 'absolute',
+    bottom: 0,
+    left: 0,
+    right: 0,
+    height: '150px',
+    background: 'linear-gradient(to top, white 2%, transparent)',
+    zIndex: 1,
+  }}
+></div>
+
       <h2 style={{ color: '#007bff', fontSize: '3em', textAlign: 'center' }}>Our Services</h2>
-      <p style={{ fontSize: '1.5em', textAlign: 'center', marginBottom: '40px' }}>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat reprehenderit autem ea ab repellat eum, quasi modi.</p>
+      <p style={{ fontSize: '1.5em', textAlign: 'center', marginBottom: '40px' }}>
+        Lorem ipsum dolor sit, amet consectetur adipisicing elit. Quaerat reprehenderit autem ea ab repellat eum,
+        quasi modi.
+      </p>
       <div style={{ display: 'flex', justifyContent: 'space-around', flexWrap: 'wrap', gap: '20px' }}>
-        {[{src: "hotel-icon.png", alt: "Hotel Reservation", text: "Hotel Reservation"},
-          {src: "tour-package-icon.png", alt: "Tour Package Reservation", text: "Tour Package Reservation"},
-          {src: "vehicle-icon.png", alt: "Vehicle Reservation", text: "Vehicle Reservation"},
-          {src: "train-icon.png", alt: "Train Reservation", text: "Train Reservation"},
-          {src: "restaurant-icon.png", alt: "Restaurant Reservation", text: "Restaurant Reservation"},
-          {src: "event-icon.png", alt: "Event Reservation", text: "Event Reservation"}
-        ].map((service, index) => (
-          <div 
-            key={index} 
-            style={hover === index ? {...serviceStyle, ...serviceHoverStyle} : serviceStyle}
-            onMouseEnter={() => setHover(index)} 
+        {[{ text: 'Hotel Reservation' }, { text: 'Tour Package Reservation' }, { text: 'Vehicle Reservation' }, { text: 'Train Reservation' }, { text: 'Restaurant Reservation' }, { text: 'Event Reservation' }].map((service, index) => (
+          <div
+            key={index}
+            style={hover === index ? { ...serviceStyle, ...serviceHoverStyle } : serviceStyle}
+            onMouseEnter={() => setHover(index)}
             onMouseLeave={() => setHover(-1)}
           >
-            <img src={service.src} alt={service.alt} style={{ marginBottom: '10px' }} />
             <p style={{ fontSize: '1.2em' }}>{service.text}</p>
           </div>
         ))}
       </div>
     </div>
   );
-};
+});
 
 const NewSection = () => {
   return (
@@ -116,11 +155,17 @@ const NewSection = () => {
 };
 
 const App = () => {
+  const servicesRef = useRef(null);
+
+  const scrollToServices = () => {
+    servicesRef.current.scrollIntoView({ behavior: 'smooth' });
+  };
+
   return (
     <div>
-      <Banner />
+      <Banner scrollToServices={scrollToServices} />
       <WhyChooseUs />
-      <Services />
+      <Services ref={servicesRef} />
       <NewSection />
     </div>
   );

@@ -36,8 +36,8 @@ const Header = () => {
                 <a href="#" style={{ textDecoration: 'none', color: '#000', fontSize: '30px' }}>Contact us</a>
             </div>
             <div style={{ display: 'flex', gap: '10px' }}>
-                <button style={{ padding: '10px 20px', border: 'none', borderRadius: '5px', fontSize: '25px', cursor: 'pointer', backgroundColor: '#007bff', color: '#fff' }}>Sign in</button>
-                <button style={{ padding: '10px 20px', border: 'none', borderRadius: '5px', fontSize: '25px', cursor: 'pointer', backgroundColor: '#343a40', color: '#fff' }}>Sign up</button>
+                <button style={{ padding: '10px 20px', border: 'none', borderRadius: '5px', fontSize: '25px', cursor: 'pointer', backgroundColor: '#007bff', color: '#fff' }}></button>
+                <button style={{ padding: '10px 20px', border: 'none', borderRadius: '5px', fontSize: '25px', cursor: 'pointer', backgroundColor: '#343a40', color: '#fff' }}></button>
             </div>
         </div>
     );
