@@ -1,46 +1,94 @@
-import React from 'react';
+import React from "react";
+import { Link } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
 
-const Header = () => {
-    const handleMouseEnter = (e) => {
-        e.currentTarget.querySelector('.dropdown-content').style.display = 'block';
-    };
-
-    const handleMouseLeave = (e) => {
-        e.currentTarget.querySelector('.dropdown-content').style.display = 'none';
-    };
-
+const DeliveryHeader = () => {
     return (
-        <div style={{ 
-            display: 'flex', 
-            justifyContent: 'space-between', 
-            alignItems: 'center', 
-            padding: '10px 20px', 
-            backgroundColor: '#f8f9fa', 
-            position: 'sticky', 
-            top: 0, 
-            zIndex: 1000 
-        }}>
-            <div style={{ padding: '10px 20px', fontSize: '40px', fontWeight: 'bold', color: '#007bff' }}>ExploreLanka</div>
-            <div style={{ display: 'flex', gap: '20px' }}>
-                <a href="#" style={{ textDecoration: 'none', color: '#000', fontSize: '30px' }}>Home</a>
-                <div style={{ position: 'relative', display: 'inline-block' }} onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
-                    <a href="#" style={{ textDecoration: 'none', color: '#000', fontSize: '30px' }}>Reservations</a>
-                    <div className="dropdown-content" style={{ display: 'none', position: 'absolute', backgroundColor: '#f1f1f1', minWidth: '160px', boxShadow: '0px 8px 16px 0px rgba(0,0,0,0.2)', zIndex: '1' }}>
-                        <a href="#" style={{ color: 'black', padding: '12px 16px', textDecoration: 'none', display: 'block' }}>Hotels</a>
-                        <a href="#" style={{ color: 'black', padding: '12px 16px', textDecoration: 'none', display: 'block' }}>Tour Packages</a>
-                        <a href="#" style={{ color: 'black', padding: '12px 16px', textDecoration: 'none', display: 'block' }}>Vehicles</a>
-                        <a href="#" style={{ color: 'black', padding: '12px 16px', textDecoration: 'none', display: 'block' }}>Events</a>
-                        <a href="#" style={{ color: 'black', padding: '12px 16px', textDecoration: 'none', display: 'block' }}>Trains</a>
-                    </div>
+        <nav 
+            className="navbar navbar-expand-lg" 
+            style={{
+                backgroundColor: "#f8f9fa", 
+                position: "fixed", 
+                top: 0, 
+                left: 0, 
+                width: "100%", 
+                zIndex: 1000,
+                boxShadow: "0 2px 5px rgba(0, 0, 0, 0.1)" // Optional: adds shadow for better visibility
+            }}
+        >
+            <div className="container">
+                <Link
+                    className="navbar-brand"
+                    to="/"
+                    style={{ color: "blue", fontWeight: "bold", fontSize: "1.5rem" }}
+                >
+                    ExploreLanka
+                </Link>
+                <button
+                    className="navbar-toggler"
+                    type="button"
+                    data-toggle="collapse"
+                    data-target="#navbarSupportedContent"
+                    aria-controls="navbarSupportedContent"
+                    aria-expanded="false"
+                    aria-label="Toggle navigation"
+                >
+                    <span className="navbar-toggler-icon"></span>
+                </button>
+
+                <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul className="navbar-nav me-auto" style={{ fontSize: "1rem" }}>
+                        <li className="nav-item">
+                            <Link to="/" className="nav-link" style={{ color: "black" }}>
+                                Home
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link to="/reservations" className="nav-link" style={{ color: "black" }}>
+                                Reservations
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link to="/contact" className="nav-link" style={{ color: "black" }}>
+                                Contact us
+                            </Link>
+                        </li>
+                    </ul>
+                    <ul className="navbar-nav ms-auto">
+                        <li className="nav-item">
+                            <Link
+                                to="/signup"
+                                className="btn"
+                                style={{
+                                    backgroundColor: "#007bff",
+                                    color: "white",
+                                    marginRight: "10px",
+                                    fontWeight: "bold",
+                                    padding: "5px 15px",
+                                }}
+                            >
+                                Signup
+                            </Link>
+                        </li>
+                        <li className="nav-item">
+                            <Link
+                                to="/signin"
+                                className="btn"
+                                style={{
+                                    backgroundColor: "#343a40",
+                                    color: "white",
+                                    fontWeight: "bold",
+                                    padding: "5px 15px",
+                                }}
+                            >
+                                Signin
+                            </Link>
+                        </li>
+                    </ul>
                 </div>
-                <a href="#" style={{ textDecoration: 'none', color: '#000', fontSize: '30px' }}>Contact us</a>
             </div>
-            <div style={{ display: 'flex', gap: '10px' }}>
-                <button style={{ padding: '10px 20px', border: 'none', borderRadius: '5px', fontSize: '25px', cursor: 'pointer', backgroundColor: '#007bff', color: '#fff' }}></button>
-                <button style={{ padding: '10px 20px', border: 'none', borderRadius: '5px', fontSize: '25px', cursor: 'pointer', backgroundColor: '#343a40', color: '#fff' }}></button>
-            </div>
-        </div>
+        </nav>
     );
 };
 
-export default Header;
+export default DeliveryHeader;

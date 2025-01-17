@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 const locations = [
-  { name: "Jaffna", x: "35%", y: "15%", imageUrl: "https://i.postimg.cc/9FVnbhNz/jaff.jpg", path: "/Jaffna", scrollDistance: 1300 },
+  { name: "Jaffna", x: "35%", y: "15%", imageUrl: "https://i.postimg.cc/9FVnbhNz/jaff.jpg", path: "/Jaffna", scrollDistance: 1000 },
   { name: "Trincomalee", x: "50%", y: "30%", imageUrl: "https://via.placeholder.com/100", path: "/trincomalee", scrollDistance: 600 },
   { name: "Sigiriya", x: "45%", y: "45%", imageUrl: "https://via.placeholder.com/100", path: "/sigiriya", scrollDistance: 400 },
   { name: "Dambulla Cave Temples", x: "30%", y: "50%", imageUrl: "https://via.placeholder.com/100", path: "/dambulla", scrollDistance: 250 },

@@ -1,5 +1,6 @@
 import './App.css';
 import Header1 from './components/Header1';
+import Firstbar from './components/Firstbar'
 import Middle from './components/Middle';
 import Location from './components/location';
 import Footer from './components/Footer';
@@ -11,6 +12,7 @@ function App() {
     <Router>
       <div className="App">
         <Header1 />
+        <Firstbar/>
         <Middle />
         <Location />
         <main>
