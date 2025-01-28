@@ -2,7 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 
-const DeliveryHeader = () => {
+const Header1 = () => {
     return (
         <nav 
             className="navbar navbar-expand-lg" 
@@ -57,7 +57,7 @@ const DeliveryHeader = () => {
                     <ul className="navbar-nav ms-auto">
                         <li className="nav-item">
                             <Link
-                                to="/signup"
+                                to="/log"
                                 className="btn"
                                 style={{
                                     backgroundColor: "#007bff",
@@ -91,4 +91,4 @@ const DeliveryHeader = () => {
     );
 };
 
-export default DeliveryHeader;
+export default Header1;

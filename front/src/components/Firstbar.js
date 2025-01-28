@@ -60,6 +60,14 @@ const PresentationBar = () => {
     }, 1000);
   };
 
+  const selectSlide = (index) => {
+    setFade(false);
+    setTimeout(() => {
+      setCurrentSlide(index);
+      setFade(true);
+    }, 1000);
+  };
+
   return (
     <div style={{ position: "relative", width: "100%", height: "100vh", overflow: "hidden" }}>
       {slideImages.map((img, index) => (
@@ -97,8 +105,71 @@ const PresentationBar = () => {
       ))}
 
       {/* Navigation Arrows */}
-      
-      
+      <button
+        onClick={prevSlide}
+        style={{
+          position: "absolute",
+          top: "50%",
+          left: "2%",
+          transform: "translateY(-50%)",
+          background: "rgba(0, 0, 0, 0.5)",
+          border: "none",
+          color: "white",
+          fontSize: "2rem",
+          cursor: "pointer",
+          zIndex: 10,
+          padding: "10px",
+          borderRadius: "50%",
+        }}
+      >
+        &#8592;
+      </button>
+      <button
+        onClick={nextSlide}
+        style={{
+          position: "absolute",
+          top: "50%",
+          right: "2%",
+          transform: "translateY(-50%)",
+          background: "rgba(0, 0, 0, 0.5)",
+          border: "none",
+          color: "white",
+          fontSize: "2rem",
+          cursor: "pointer",
+          zIndex: 10,
+          padding: "10px",
+          borderRadius: "50%",
+        }}
+      >
+        &#8594;
+      </button>
+
+      {/* Dot Indicators */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: "10%",
+          left: "50%",
+          transform: "translateX(-50%)",
+          display: "flex",
+          gap: "10px",
+        }}
+      >
+        {slideImages.map((_, index) => (
+          <div
+            key={index}
+            onClick={() => selectSlide(index)}
+            style={{
+              width: "15px",
+              height: "15px",
+              borderRadius: "50%",
+              background: index === currentSlide ? "white" : "rgba(255, 255, 255, 0.5)",
+              cursor: "pointer",
+              transition: "background 0.3s ease",
+            }}
+          ></div>
+        ))}
+      </div>
     </div>
   );
 };

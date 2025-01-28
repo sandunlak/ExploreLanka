@@ -1,26 +1,42 @@
-const express = require("express");  //Create variable and assign value
+//server.js
+const express = require("express");
 const mongoose = require("mongoose");
-const bodyparser = require("body-parser");
+const bodyParser = require("body-parser");
 const cors = require("cors");
 const dotenv = require("dotenv");
+
+
+dotenv.config();
+
 const app = express();
-require("dotenv").config();
-const path = require('path');
+const PORT = process.env.PORT || 8070;
 
-const PORT = process.env.PORT || 8070; //If 8070 not avilable assign another avilalabe port number
-
+// Middleware
 app.use(cors());
-app.use(bodyparser.json());
+app.use(bodyParser.json());
 
-const URL = process.env.MONGODB_URL; //connect to mongodb
-
-mongoose.connect(URL,{
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-   
-});
-
-const connection = mongoose.connection;
-connection.once("open",() => {  //Open the created connection
-    console.log("MongoDb connection success!");
+// MongoDB Connection
+const URL = process.env.MONGODB_URL;
+mongoose.connect(URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
 })
+  .then(() => console.log("MongoDB connection successful!"))
+  .catch((err) => console.error("MongoDB connection failed:", err));
+
+// Routes
+const studentRouter = require("./routes/students.js"); //Add students.js file
+const signupRouter = require("./routes/signups.js");
+const loginRouter = require("./routes/logins.js");
+
+app.use("/student",studentRouter);
+app.use("/signup",signupRouter);
+app.use("/login", loginRouter);
+
+
+
+
+// Start Server
+app.listen(PORT, () => {
+  console.log(`Server is running on port ${PORT}`);
+});
